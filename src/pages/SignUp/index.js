@@ -70,6 +70,7 @@ export default function SignUp() {
             required
           />
         </Form.Group>
+
         <Form.Group className='mt-5'>
           <Button variant='primary' type='submit' onClick={submitForm}>
             Sign up

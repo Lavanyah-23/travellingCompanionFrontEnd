@@ -41,9 +41,9 @@ function App() {
         <Route path="/trips" element={<TripList />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/tripdetails" element={<TripDetails />} />
-        <Route path="/userPage" element={<UserPage />} />
-        <Route path="/addTrip" element={<AddTrip />} />
+        <Route path="/trips/:id" element={<TripDetails />} />
+        <Route path="/userpage/:id" element={<UserPage />} />
+        <Route path="/addtrip" element={<AddTrip />} />
       </Routes>
     </div>
   );
