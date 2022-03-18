@@ -17,7 +17,7 @@ export default function TripList() {
 
   const allTrips = useSelector(selectTrips)
 
-  console.log("what are Trips", allTrips)
+  // console.log("what are Trips", allTrips)
 
 
   return (

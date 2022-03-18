@@ -3,22 +3,16 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectOneTrip } from "../../store/trips/selectors"
+import { selectUser } from "../../store/user/selectors";
 import { fetchUsersOneTrip } from "../../store/trips/actions";
-import { Form, Button } from "react-bootstrap"
 import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
 import moment from "moment";
 import PostComment from "../../components/PostComment";
 
-
-
-
-
 export default function TripDetails() {
-
   const { id } = useParams();
-
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
   const moment = require('moment');
 
   useEffect(() => {
@@ -31,13 +25,10 @@ export default function TripDetails() {
     return null;
   }
 
-
-
-
   return (
     <div style={{ padding: "40px 40px" }}>
 
-      <Paper style={{ padding: "20px 20px" }}>
+      <Paper key={oneTrip.id} style={{ padding: "20px 20px" }}>
         <h3>{oneTrip.title}</h3>
         <p>We are going to: <strong>{oneTrip.country}</strong></p>
         <img
@@ -55,13 +46,13 @@ export default function TripDetails() {
 
         {!oneTrip.comments ? "loading" : oneTrip.comments.map((comment) => {
           return (
-            <div>
+            <div key={comment.id}>
               <Paper style={{ padding: "40px 20px" }}>
-                <Grid container wrap="nowrap" spacing={2}>
+                <Grid justifyContent="center" container wrap="nowrap" spacing={2}>
                   <Grid item>
                     <Avatar alt={comment.name} src={comment.user.imageAvatar} />
                   </Grid>
-                  <Grid justifyContent="left" item xs zeroMinWidth>
+                  <Grid item xs zeroMinWidth>
                     <h4 style={{ margin: 0, textAlign: "left" }}>{comment.name}</h4>
                     <p style={{ textAlign: "left" }}>
                       {comment.comment}
@@ -77,8 +68,11 @@ export default function TripDetails() {
             </div>
           )
         })}
-
-        <PostComment id={oneTrip.id} />
+        {user.token ? (
+          < PostComment id={oneTrip.id} />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
