@@ -7,11 +7,18 @@ import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
+import DatePicker from "react-date-picker";
 
 export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [imageAvatar, setImageAvatar] = useState("");
+  const [description, setDescription] = useState("");
+  const [gender, setGender] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState(new Date());
+
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const navigate = useNavigate();
@@ -25,11 +32,19 @@ export default function SignUp() {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(signUp(name, email, password));
+    dispatch(signUp(name, email, password, gender, dateOfBirth, phoneNumber, description,
+      // imageAvatar,
+
+
+    ));
 
     setEmail("");
     setPassword("");
     setName("");
+    setPhoneNumber("");
+    setGender("");
+    setDescription("");
+    setDateOfBirth("");
   }
 
   return (
@@ -46,6 +61,7 @@ export default function SignUp() {
             required
           />
         </Form.Group>
+        <pre> </pre>
         <Form.Group controlId='formBasicEmail'>
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -59,7 +75,7 @@ export default function SignUp() {
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
-
+        <pre> </pre>
         <Form.Group controlId='formBasicPassword'>
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -70,6 +86,68 @@ export default function SignUp() {
             required
           />
         </Form.Group>
+        <pre> </pre>
+        <Form.Group controlId="formBasicPhoneNumber">
+          <Form.Label>PhoneNumber</Form.Label>
+          <Form.Control
+            value={phoneNumber}
+            onChange={(event) => setPhoneNumber(event.target.value)}
+            type="phoneNumber"
+            placeholder="PhoneNumber"
+            required
+          />
+        </Form.Group>
+        <pre> </pre>
+        <Form.Group controlId="formBasicDescription">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+            type="description"
+            placeholder="Description"
+            required
+          />
+        </Form.Group>
+        <pre> </pre>
+        <Form.Group controlId="formBasicGender">
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGender("m")}
+            />
+          </label>
+          <Form.Label>&nbsp; Male</Form.Label><br></br>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGender("f")}
+            />
+          </label>
+          <Form.Label>&nbsp; Female</Form.Label><br></br>
+          <label>
+            <input
+              type="radio"
+              onChange={() => setGender("o")}
+            />
+          </label>
+          <Form.Label>&nbsp; Other</Form.Label>
+        </Form.Group>
+        <pre> </pre>
+        <Form.Group controlId="formBasicDateOfBirth">
+          <Form.Label>Date of Birth</Form.Label><br></br>
+          <DatePicker
+            value={dateOfBirth}
+            onChange={setDateOfBirth}
+            name="dateOfBirth"
+            dateFormat="MM/dd/yyyy"
+          />
+        </Form.Group>
+
+        {/* <Form.Group controlId="formBasicImageAvatar">
+          <Form.Label>ImageAvatar</Form.Label>
+          <img src={imageAvatar} alt="imageAvatar" />
+        </Form.Group>
+ */}
 
         <Form.Group className='mt-5'>
           <Button variant='primary' type='submit' onClick={submitForm}>

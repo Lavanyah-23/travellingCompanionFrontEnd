@@ -17,7 +17,23 @@ export default (state = initialState, action) => {
         oneTrip: action.payload,
       };
 
+
+    case "trips/postComment":
+
+      const { comment, user } = action.payload
+
+      comment.user = user
+
+      return {
+        ...state,
+        oneTrip: {
+          ...state.oneTrip,
+          comments: [...state.oneTrip.comments, comment]
+        }
+      };
+
     default:
       return state;
   }
 };
+
