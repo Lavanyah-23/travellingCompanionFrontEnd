@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import io from "socket.io-client";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
@@ -15,8 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
 import { Jumbotron } from "react-bootstrap";
-
-const socket = io.connect("http://localhost:4001");
 
 const Home = () => (
   <Jumbotron>
