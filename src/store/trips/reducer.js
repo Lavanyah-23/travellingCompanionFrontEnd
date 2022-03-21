@@ -1,6 +1,7 @@
 const initialState = {
   allTrips: [],
   oneTrip: {},
+  travelers: [],
 };
 
 export default (state = initialState, action) => {
@@ -31,6 +32,24 @@ export default (state = initialState, action) => {
           comments: [...state.oneTrip.comments, comment]
         }
       };
+
+    case "add/traveler": {
+      return {
+        ...state,
+        travelers: [...state.travelers, action.payload],
+      };
+    }
+
+    case "delete/traveler": {
+      const newArray = state.travelers.filter((travelers) => {
+        return travelers.id !== action.payload.id;
+      });
+
+      return {
+        ...state,
+        travelers: [...newArray],
+      };
+    }
 
     default:
       return state;

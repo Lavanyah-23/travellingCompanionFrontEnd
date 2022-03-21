@@ -112,3 +112,43 @@ export function postTrip(
     }
   };
 }
+
+export function addNewTraveler(traveler) {
+    return {
+        type: "add/traveler",
+        payload: traveler,
+    };
+};
+
+export const deleteTraveler = (traveler) => {
+    return {
+        type: "delete/traveler",
+        payload: traveler,
+    };
+};
+
+export function changeTraveler(id) {
+    return async function thunk(dispatch) {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.get(`${apiUrl}/auth/me`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            const data = await axios.patch(
+                `${apiUrl}/travelers/${id}`,
+                {},
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
+            if (data.data.id) {
+                dispatch(addNewTraveler(data.data));
+            } else {
+                dispatch(deleteTraveler(response.data));
+            }
+            console.log("This is the response", data)
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+}

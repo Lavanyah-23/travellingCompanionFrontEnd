@@ -18,8 +18,6 @@ export default function TripList() {
 
   const allTrips = useSelector(selectTrips);
 
-  console.log("what are Trips", allTrips);
-
   return (
     <div>
       <h2>All Trips</h2>
