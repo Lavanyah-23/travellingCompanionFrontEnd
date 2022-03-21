@@ -2,8 +2,8 @@ import React from "react";
 import io from "socket.io-client";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { selectOneTrip } from "../../store/trips/selectors";
+import { useParams, Link } from "react-router-dom";
+import { selectOneTrip } from "../../store/trips/selectors"
 import { selectUser } from "../../store/user/selectors";
 import { fetchUsersOneTrip, changeTraveler } from "../../store/trips/actions";
 import { Divider, Avatar, Grid, Paper, Button } from "@material-ui/core";
@@ -47,36 +47,33 @@ export default function TripDetails() {
     setShowChat(true);
   };
 
+  const token = localStorage.getItem("token");
+
   return (
     <div style={{ padding: "40px 40px" }}>
       <Paper key={oneTrip.id} style={{ padding: "20px 20px" }}>
         <h3>{oneTrip.title}</h3>
-        <p>
-          We are going to: <strong>{oneTrip.country}</strong>
-        </p>
-        <img width={400} src={oneTrip.image} alt={oneTrip.title} />
-        <p>
-          Something about the destination:{" "}
-          <strong>{oneTrip.description}</strong>
-        </p>
-        <p>
-          Maximum travelers for this trip:{" "}
-          <strong>{oneTrip.maximumTravelers}</strong>
-        </p>
-        <p>
-          Date of departure: <strong>{oneTrip.startingDate}</strong>
-        </p>
-        <p>
-          Date of arrival: <strong>{oneTrip.endDate}</strong>{" "}
-        </p>
-        <Button
-          variant="outlined"
-          color="succes"
-          style={{ margin: 10 }}
-          onClick={goOrNotGO}
-        >
-          {alreadyTraveler ? "Not go on this trip" : "Go on this trip!"}
-        </Button>
+        <p>We are going to: <strong>{oneTrip.country}</strong></p>
+        <img
+          width={400}
+          src={oneTrip.image}
+          alt={oneTrip.title}
+        />
+        <p>Something about the destination: <strong>{oneTrip.description}</strong></p>
+        <p>Maximum travelers for this trip: <strong>{oneTrip.maximumTravelers}</strong></p>
+        <p>Date of departure: <strong>{oneTrip.startingDate}</strong></p>
+        <p>Date of arrival: <strong>{oneTrip.endDate}</strong> </p>
+        {!token ? (
+          <Link to="/login" style={{ textDecoration: 'none' }}>
+            <Button variant="outlined" color="succes" style={{ margin: 10 }}>
+              Want to go on this trip? Please log in first!
+            </Button>
+          </Link>
+        ) : (
+          <Button variant="outlined" color="succes" style={{ margin: 10 }} onClick={goOrNotGO}>
+            {alreadyTraveler ? "Click to 'not go' on this trip" : "Click to 'go' on this trip!"}
+          </Button>
+        )}
 
         {!alreadyTraveler ? (
           "Join trip to chat with fellow travelers"
