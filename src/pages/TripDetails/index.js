@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { selectOneTrip } from "../../store/trips/selectors"
 import { selectUser } from "../../store/user/selectors";
 import { fetchUsersOneTrip, changeTraveler } from "../../store/trips/actions";
@@ -35,6 +35,8 @@ export default function TripDetails() {
       return user.id === traveler.id;
     })
 
+  const token = localStorage.getItem("token");
+
   return (
     <div style={{ padding: "40px 40px" }}>
 
@@ -49,9 +51,17 @@ export default function TripDetails() {
         <p>Maximum travelers for this trip: <strong>{oneTrip.maximumTravelers}</strong></p>
         <p>Date of departure: <strong>{oneTrip.startingDate}</strong></p>
         <p>Date of arrival: <strong>{oneTrip.endDate}</strong> </p>
-        <Button variant="outlined" color="succes" style={{ margin: 10 }} onClick={goOrNotGO}>
-          {alreadyTraveler ? "Not go on this trip" : "Go on this trip!"}
-        </Button>
+        {!token ? (
+          <Link to="/login" style={{ textDecoration: 'none' }}>
+            <Button variant="outlined" color="succes" style={{ margin: 10 }}>
+              Want to go on this trip? Please log in first!
+            </Button>
+          </Link>
+        ) : (
+          <Button variant="outlined" color="succes" style={{ margin: 10 }} onClick={goOrNotGO}>
+            {alreadyTraveler ? "Click to 'not go' on this trip" : "Click to 'go' on this trip!"}
+          </Button>
+        )}
       </Paper>
 
       <div style={{ padding: 14 }} className="App">
