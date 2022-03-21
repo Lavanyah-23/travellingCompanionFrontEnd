@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const UserPage = () => {
   return (
-    <div>
-      <h1>UserDetails</h1>
+    <div className="User_Div">
+      <h1> style={{ textAlign: "center" }} UserDetails</h1>
 
       <Button OnClick={Link} to={"/addtrip"}>
         Add a trip

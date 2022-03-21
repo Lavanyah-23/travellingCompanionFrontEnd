@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./App.css";
-
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Loading from "./components/Loading";
@@ -11,17 +10,9 @@ import TripList from "./pages/TripList";
 import TripDetails from "./pages/TripDetails";
 import UserPage from "./pages/UserPage";
 import AddTrip from "./pages/AddTrip";
-
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
-import { Jumbotron } from "react-bootstrap";
-
-const Home = () => (
-  <Jumbotron>
-    <h1>Home</h1>
-  </Jumbotron>
-);
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +28,7 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<TripList />} />
         <Route path="/trips" element={<TripList />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

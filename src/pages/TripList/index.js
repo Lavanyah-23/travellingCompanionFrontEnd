@@ -8,9 +8,11 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Divider } from "@material-ui/core";
 import Stack from "@mui/material/Stack";
+import { selectToken } from "../../store/user/selectors";
 
 export default function TripList() {
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(fetchTrips());
@@ -22,6 +24,9 @@ export default function TripList() {
     <div className="Trips_List">
       <div className="Trips_Block">
         <h2 style={{ textAlign: "center" }}>All Trips</h2>
+        {!token ? (
+        "Sign in to post a trip"
+      ) : (
         <Link to="/addtrip">
           <Button
             style={{
@@ -34,6 +39,7 @@ export default function TripList() {
             Add Trip
           </Button>
         </Link>
+      )}
         <Stack
           direction="row"
           divider={<Divider orientation="vertical" flexItem />}
@@ -44,6 +50,7 @@ export default function TripList() {
           })}
         </Stack>
       </div>
-    </div>
+      </div>
+   
   );
 }
