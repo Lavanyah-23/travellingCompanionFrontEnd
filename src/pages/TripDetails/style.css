@@ -1,0 +1,28 @@
+.Title_Trip_Detail {
+  text-align: center;
+  margin-top: 2%;
+}
+
+.Trip_Detail_Info {
+  display: flex;
+  margin-top: 5%;
+  justify-content: center;
+  font-size: large;
+}
+
+/* .ImageChef {
+  width: 400px;
+  border-radius: 50%;
+}
+
+.InformationChef {
+  margin-left: 8%;
+  width: 50%;
+  font-size: large;
+} */
+.Comments_TripDetails {
+  margin-top: 10%;
+  background-color: rgb(236, 236, 250);
+  border-radius: 5%;
+  padding: 5%;
+}

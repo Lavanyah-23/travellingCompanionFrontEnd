@@ -6,6 +6,8 @@ import { selectTrips } from "../../store/trips/selectors";
 import TripComponent from "../../components/TripComponent/TripComponent";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Divider } from "@material-ui/core";
+import Stack from "@mui/material/Stack";
 
 export default function TripList() {
   const dispatch = useDispatch();
@@ -17,14 +19,31 @@ export default function TripList() {
   const allTrips = useSelector(selectTrips);
 
   return (
-    <div>
-      <h2>All Trips</h2>
-      <Link to="/addtrip">
-        <Button>Add Trip</Button>
-      </Link>
-      {allTrips.map((trip, index) => {
-        return <TripComponent key={index} trip={trip} />;
-      })}
+    <div className="Trips_List">
+      <div className="Trips_Block">
+        <h2 style={{ textAlign: "center" }}>All Trips</h2>
+        <Link to="/addtrip">
+          <Button
+            style={{
+              width: 100,
+              height: 50,
+              marginTop: 20,
+              justifyContent: "center",
+            }}
+          >
+            Add Trip
+          </Button>
+        </Link>
+        <Stack
+          direction="row"
+          divider={<Divider orientation="vertical" flexItem />}
+          spacing={2}
+        >
+          {allTrips.map((trip, index) => {
+            return <TripComponent key={index} trip={trip} />;
+          })}
+        </Stack>
+      </div>
     </div>
   );
 }

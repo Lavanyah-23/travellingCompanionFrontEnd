@@ -1,0 +1,19 @@
+/* .HomePageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.HomePageText {
+  background-color: rgba(198, 197, 238, 0.109);
+  width: 76%;
+  height: 20%;
+  place-content: calc(300);
+  justify-content: end;
+  border-radius: 20;
+
+  left: 65%;
+  top: 75%;
+  font-size: large;
+} */

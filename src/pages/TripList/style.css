@@ -1,0 +1,20 @@
+.Trips_List {
+  background-color: rgb(85, 128, 207);
+  margin: 0;
+}
+.Title_TripsList {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Indie Flower", cursive;
+  color: rgb(77, 42, 231);
+}
+
+.Trips_Block {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex-direction: "row";
+  justify-content: center;
+}
+.Add_Button_TripList {
+}
