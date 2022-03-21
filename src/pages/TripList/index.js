@@ -6,9 +6,11 @@ import { selectTrips } from "../../store/trips/selectors";
 import TripComponent from "../../components/TripComponent/TripComponent";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { selectToken } from "../../store/user/selectors";
 
 export default function TripList() {
   const dispatch = useDispatch();
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(fetchTrips());
@@ -21,9 +23,13 @@ export default function TripList() {
   return (
     <div>
       <h2>All Trips</h2>
-      <Link to="/addtrip">
-        <Button>Add Trip</Button>
-      </Link>
+      {!token ? (
+        "Sign in to post a trip"
+      ) : (
+        <Link to="/addtrip">
+          <Button>Add Trip</Button>
+        </Link>
+      )}
       {allTrips.map((trip, index) => {
         return <TripComponent key={index} trip={trip} />;
       })}
