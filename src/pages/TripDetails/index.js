@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectOneTrip } from "../../store/trips/selectors"
 import { selectUser } from "../../store/user/selectors";
-import { fetchUsersOneTrip } from "../../store/trips/actions";
-import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
+import { fetchUsersOneTrip, changeTraveler } from "../../store/trips/actions";
+import { Divider, Avatar, Grid, Paper, Button } from "@material-ui/core";
 import moment from "moment";
 import PostComment from "../../components/PostComment";
 
@@ -21,9 +21,19 @@ export default function TripDetails() {
 
   const oneTrip = useSelector(selectOneTrip)
 
+  const goOrNotGO = () => {
+    dispatch(changeTraveler(id));
+  };
+
   if (!oneTrip) {
     return null;
   }
+
+  const alreadyTraveler = !oneTrip.traveler
+    ? (console.log("no traveler yet"))
+    : oneTrip.traveler.find((traveler) => {
+      return user.id === traveler.id;
+    })
 
   return (
     <div style={{ padding: "40px 40px" }}>
@@ -39,6 +49,9 @@ export default function TripDetails() {
         <p>Maximum travelers for this trip: <strong>{oneTrip.maximumTravelers}</strong></p>
         <p>Date of departure: <strong>{oneTrip.startingDate}</strong></p>
         <p>Date of arrival: <strong>{oneTrip.endDate}</strong> </p>
+        <Button variant="outlined" color="succes" style={{ margin: 10 }} onClick={goOrNotGO}>
+          {alreadyTraveler ? "Not go on this trip" : "Go on this trip!"}
+        </Button>
       </Paper>
 
       <div style={{ padding: 14 }} className="App">
