@@ -2,10 +2,13 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
+
 import { selectOneTrip } from "../../store/trips/selectors"
 import { selectUser } from "../../store/user/selectors";
 import { fetchUsersOneTrip, changeTraveler } from "../../store/trips/actions";
 import { Divider, Avatar, Grid, Paper, Button } from "@material-ui/core";
+import { Form, Button } from "react-bootstrap";
+
 import moment from "moment";
 import PostComment from "../../components/PostComment";
 
@@ -13,13 +16,14 @@ export default function TripDetails() {
   const { id } = useParams();
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  const moment = require('moment');
+
+  const moment = require("moment");
 
   useEffect(() => {
     dispatch(fetchUsersOneTrip(id));
   }, [dispatch, id]);
 
-  const oneTrip = useSelector(selectOneTrip)
+  const oneTrip = useSelector(selectOneTrip);
 
   const goOrNotGO = () => {
     dispatch(changeTraveler(id));
@@ -46,6 +50,7 @@ export default function TripDetails() {
         <img
           width={400}
           src={oneTrip.image}
+          alt={oneTrip.title}
         />
         <p>Something about the destination: <strong>{oneTrip.description}</strong></p>
         <p>Maximum travelers for this trip: <strong>{oneTrip.maximumTravelers}</strong></p>
@@ -96,7 +101,8 @@ export default function TripDetails() {
         ) : (
           ""
         )}
+
       </div>
     </div>
   );
-};
+}
