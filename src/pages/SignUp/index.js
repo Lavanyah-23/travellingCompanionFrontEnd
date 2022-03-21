@@ -32,11 +32,7 @@ export default function SignUp() {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(signUp(name, email, password, gender, dateOfBirth, phoneNumber, description,
-      // imageAvatar,
-
-
-    ));
+    dispatch(signUp(name, email, password, gender, dateOfBirth, imageAvatar, phoneNumber, description,));
 
     setEmail("");
     setPassword("");
@@ -45,6 +41,7 @@ export default function SignUp() {
     setGender("");
     setDescription("");
     setDateOfBirth("");
+    setImageAvatar("")
   }
 
   return (
@@ -105,6 +102,17 @@ export default function SignUp() {
             onChange={(event) => setDescription(event.target.value)}
             type="description"
             placeholder="Description"
+            required
+          />
+        </Form.Group>
+        <pre> </pre>
+        <Form.Group controlId="formBasicImageAvatar">
+          <Form.Label>Image Avatar url</Form.Label>
+          <Form.Control
+            value={imageAvatar}
+            onChange={(event) => setImageAvatar(event.target.value)}
+            type="imageAvatar"
+            placeholder="ImageAvatar URL"
             required
           />
         </Form.Group>
