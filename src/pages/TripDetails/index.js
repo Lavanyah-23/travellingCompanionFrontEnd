@@ -45,8 +45,8 @@ export default function TripDetails() {
   const alreadyTraveler = !oneTrip.traveler
     ? console.log("no traveler yet")
     : oneTrip.traveler.find((traveler) => {
-      return user.id === traveler.id;
-    });
+        return user.id === traveler.id;
+      });
 
   const joinRoom = () => {
     socket.emit("join_room", id);
@@ -85,28 +85,9 @@ export default function TripDetails() {
               <Button variant="outlined" color="succes" style={{ margin: 10 }}>
                 Want to go on this trip? Please log in first!
               </Button>
-            </Link>) : (
-            !clickedGo ? (
-              alreadyTraveler ? (
-                <Button
-                  variant="outlined"
-                  color="succes"
-                  style={{ margin: 10 }}
-                  onClick={goOrNotGO}
-                >
-                  Click to 'not go' on this trip!
-                </Button>
-              ) : (
-                <Button
-                  variant="outlined"
-                  color="succes"
-                  style={{ margin: 10 }}
-                  onClick={goOrNotGO}
-                >
-                  Click to 'go' on this trip
-                </Button>
-              )
-            ) : !alreadyTraveler ? (
+            </Link>
+          ) : !clickedGo ? (
+            alreadyTraveler ? (
               <Button
                 variant="outlined"
                 color="succes"
@@ -117,21 +98,37 @@ export default function TripDetails() {
               </Button>
             ) : (
               <Button
-                variant="outlined"
-                color="succes"
+                variant="contained"
+                color="primary"
                 style={{ margin: 10 }}
                 onClick={goOrNotGO}
               >
                 Click to 'go' on this trip
               </Button>
-            ))}<br></br>
+            )
+          ) : !alreadyTraveler ? (
+            <Button
+              variant="outlined"
+              color="succes"
+              style={{ margin: 10 }}
+              onClick={goOrNotGO}
+            >
+              Click to 'not go' on this trip!
+            </Button>
+          ) : (
+            <Button
+              variant="outlined"
+              color="succes"
+              style={{ margin: 10 }}
+              onClick={goOrNotGO}
+            >
+              Click to 'go' on this trip
+            </Button>
+          )}
+          <br></br>
           {!clicked ? (
             !alreadyTraveler ? (
-              <Button
-                variant="outlined"
-                color="succes"
-                style={{ margin: 10 }}
-              >
+              <Button variant="outlined" color="succes" style={{ margin: 10 }}>
                 Join trip to chat with fellow travelers
               </Button>
             ) : (
@@ -145,11 +142,7 @@ export default function TripDetails() {
               </Button>
             )
           ) : alreadyTraveler ? (
-            <Button
-              variant="outlined"
-              color="succes"
-              style={{ margin: 10 }}
-            >
+            <Button variant="contained" color="succes" style={{ margin: 10 }}>
               Join trip to chat with fellow travelers
             </Button>
           ) : (
@@ -174,44 +167,44 @@ export default function TripDetails() {
           {!oneTrip.comments
             ? "loading"
             : oneTrip.comments.map((comment) => {
-              return (
-                <div key={comment.id}>
-                  <Paper style={{ padding: "40px 20px" }}>
-                    <Grid
-                      justifyContent="center"
-                      container
-                      wrap="nowrap"
-                      spacing={2}
-                    >
-                      <Grid item>
-                        <Avatar
-                          alt={comment.name}
-                          src={comment.user.imageAvatar}
+                return (
+                  <div key={comment.id}>
+                    <Paper style={{ padding: "40px 20px" }}>
+                      <Grid
+                        justifyContent="center"
+                        container
+                        wrap="nowrap"
+                        spacing={2}
+                      >
+                        <Grid item>
+                          <Avatar
+                            alt={comment.name}
+                            src={comment.user.imageAvatar}
+                          />
+                        </Grid>
+                        <Grid item xs zeroMinWidth>
+                          <h4 style={{ margin: 0, textAlign: "left" }}>
+                            {comment.name}
+                          </h4>
+                          <p style={{ textAlign: "left" }}>{comment.comment}</p>
+                          <p style={{ textAlign: "left", color: "gray" }}>
+                            {moment(comment.createdAt).format(
+                              "YYYY-MM-DD hh:mm A"
+                            )}
+                          </p>
+                        </Grid>
+                        <Divider
+                          variant="fullWidth"
+                          style={{ margin: "30px 0" }}
                         />
                       </Grid>
-                      <Grid item xs zeroMinWidth>
-                        <h4 style={{ margin: 0, textAlign: "left" }}>
-                          {comment.name}
-                        </h4>
-                        <p style={{ textAlign: "left" }}>{comment.comment}</p>
-                        <p style={{ textAlign: "left", color: "gray" }}>
-                          {moment(comment.createdAt).format(
-                            "YYYY-MM-DD hh:mm A"
-                          )}
-                        </p>
-                      </Grid>
-                      <Divider
-                        variant="fullWidth"
-                        style={{ margin: "30px 0" }}
-                      />
-                    </Grid>
-                  </Paper>
-                </div>
-              );
-            })}
+                    </Paper>
+                  </div>
+                );
+              })}
           {user.token ? <PostComment id={oneTrip.id} /> : ""}
         </div>
       </div>
-    </div >
+    </div>
   );
 }
