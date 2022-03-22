@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { Divider, Avatar, Grid, Paper } from "@material-ui/core";
-import { Pagination } from "@mui/material";
+import { Paper } from "@material-ui/core";
 import "./style.css";
 
 export default function TripComponent(props) {
@@ -20,12 +19,10 @@ export default function TripComponent(props) {
 
   return (
     <div
-      classname="Trip_ComponentDiv"
       style={{
         backgroundColor: "lightgrey",
         padding: "20px 40px",
         borderRadius: 20,
-        padding: "20px 20px",
       }}
     >
       <Paper
@@ -35,15 +32,17 @@ export default function TripComponent(props) {
           padding: "20px 20px",
         }}
       >
-        <h1>{title}</h1><br></br>
+        <h1>{title}</h1>
+        <br></br>
+
+        <Link to={`/trips/${id}`}>
+          <img width={250} src={image} alt={title} />
+        </Link>
         <p>Organized by: {organizer.name}</p>
         <p>Country: {country}</p>
-        <Link to={`/trips/${id}`}>
-          <img width={250} src={image} />
-        </Link>
-        <p>Starting date of the trip: {startingDate}</p>
-        <p>Ending date of the trip: {endDate}</p>
-        <p>The maximum number of Travelers: {maximumTravelers}</p>
+        <p>Departure date: {startingDate}</p>
+        <p>Arrival date: {endDate}</p>
+        <p>Maximum travelers: {maximumTravelers}</p>
         <p>Trip description: {description}</p>
         <Link to={`/trips/${id}`}>
           <Button>Look at the trip details</Button>

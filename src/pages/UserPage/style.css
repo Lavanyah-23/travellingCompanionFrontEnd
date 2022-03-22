@@ -2,3 +2,17 @@
   display: flex;
   flex-direction: column;
 }
+
+.User_Page {
+  border-radius: 30%;
+}
+
+.User_Block {
+  padding: 1%;
+  align-self: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(230, 230, 230);
+}

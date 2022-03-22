@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { postTrip } from "../../store/trips/actions";
 import { useNavigate } from "react-router-dom";
+import Cloudinary from "../../components/Cloudinary";
 import "./style.css";
 
 const AddTrip = () => {
@@ -43,7 +44,9 @@ const AddTrip = () => {
     setImage("");
     setCountry("");
     setMaximumTravelers(2);
-    navigate("/trips");
+    setTimeout(() => {
+      navigate("/trips");
+    }, 1500);
   }
 
   return (
@@ -75,7 +78,7 @@ const AddTrip = () => {
         />
       </Form.Group>
 
-      <Form.Group style={{ maxWidth: "300px" }}>
+      {/* <Form.Group style={{ maxWidth: "300px" }}>
         <Form.Label>Image</Form.Label>
         <Form.Control
           value={image}
@@ -84,6 +87,11 @@ const AddTrip = () => {
           placeholder="image"
           required
         />
+      </Form.Group> */}
+
+      <Form.Group style={{ maxWidth: "300px" }}>
+        <Form.Label>Image</Form.Label>
+        <Cloudinary image={setImage} />
       </Form.Group>
 
       <Form.Group style={{ maxWidth: "300px" }}>

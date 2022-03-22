@@ -7,8 +7,13 @@
 }
 .HomePageText {
   height: 20%;
-  justify-content: center;
   left: 65%;
   top: 75%;
-  font-size: large;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 30px;
+  font-size: 30px;
+  text-align: center;
+}
+.HomePageBackGroundImage {
+  transition: scale 2s;
 }

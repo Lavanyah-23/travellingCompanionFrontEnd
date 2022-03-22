@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import DatePicker from "react-date-picker";
+import Cloudinary from "../../components/Cloudinary";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -32,7 +33,18 @@ export default function SignUp() {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(signUp(name, email, password, gender, dateOfBirth, imageAvatar, phoneNumber, description,));
+    dispatch(
+      signUp(
+        name,
+        email,
+        password,
+        gender,
+        dateOfBirth,
+        imageAvatar,
+        phoneNumber,
+        description
+      )
+    );
 
     setEmail("");
     setPassword("");
@@ -41,45 +53,45 @@ export default function SignUp() {
     setGender("");
     setDescription("");
     setDateOfBirth("");
-    setImageAvatar("")
+    setImageAvatar("");
   }
 
   return (
     <Container>
-      <Form as={Col} md={{ span: 6, offset: 3 }} className='mt-5'>
-        <h1 className='mt-5 mb-5'>Signup</h1>
-        <Form.Group controlId='formBasicName'>
+      <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
+        <h1 className="mt-5 mb-5">Signup</h1>
+        <Form.Group controlId="formBasicName">
           <Form.Label>Name</Form.Label>
           <Form.Control
             value={name}
             onChange={(event) => setName(event.target.value)}
-            type='text'
-            placeholder='Enter name'
+            type="text"
+            placeholder="Enter name"
             required
           />
         </Form.Group>
         <pre> </pre>
-        <Form.Group controlId='formBasicEmail'>
+        <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            type='email'
-            placeholder='Enter email'
+            type="email"
+            placeholder="Enter email"
             required
           />
-          <Form.Text className='text-muted'>
+          <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
         <pre> </pre>
-        <Form.Group controlId='formBasicPassword'>
+        <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            type='password'
-            placeholder='Password'
+            type="password"
+            placeholder="Password"
             required
           />
         </Form.Group>
@@ -108,41 +120,29 @@ export default function SignUp() {
         <pre> </pre>
         <Form.Group controlId="formBasicImageAvatar">
           <Form.Label>Image Avatar url</Form.Label>
-          <Form.Control
-            value={imageAvatar}
-            onChange={(event) => setImageAvatar(event.target.value)}
-            type="imageAvatar"
-            placeholder="ImageAvatar URL"
-            required
-          />
+          <Cloudinary image={setImageAvatar} />
         </Form.Group>
         <pre> </pre>
         <Form.Group controlId="formBasicGender">
           <label>
-            <input
-              type="radio"
-              onChange={() => setGender("m")}
-            />
+            <input type="radio" onChange={() => setGender("m")} />
           </label>
-          <Form.Label>&nbsp; Male</Form.Label><br></br>
+          <Form.Label>&nbsp; Male</Form.Label>
+          <br></br>
           <label>
-            <input
-              type="radio"
-              onChange={() => setGender("f")}
-            />
+            <input type="radio" onChange={() => setGender("f")} />
           </label>
-          <Form.Label>&nbsp; Female</Form.Label><br></br>
+          <Form.Label>&nbsp; Female</Form.Label>
+          <br></br>
           <label>
-            <input
-              type="radio"
-              onChange={() => setGender("o")}
-            />
+            <input type="radio" onChange={() => setGender("o")} />
           </label>
           <Form.Label>&nbsp; Other</Form.Label>
         </Form.Group>
         <pre> </pre>
         <Form.Group controlId="formBasicDateOfBirth">
-          <Form.Label>Date of Birth</Form.Label><br></br>
+          <Form.Label>Date of Birth</Form.Label>
+          <br></br>
           <DatePicker
             value={dateOfBirth}
             onChange={setDateOfBirth}
@@ -157,12 +157,12 @@ export default function SignUp() {
         </Form.Group>
  */}
 
-        <Form.Group className='mt-5'>
-          <Button variant='primary' type='submit' onClick={submitForm}>
+        <Form.Group className="mt-5">
+          <Button variant="primary" type="submit" onClick={submitForm}>
             Sign up
           </Button>
         </Form.Group>
-        <Link to='/login'>Click here to log in</Link>
+        <Link to="/login">Click here to log in</Link>
       </Form>
     </Container>
   );

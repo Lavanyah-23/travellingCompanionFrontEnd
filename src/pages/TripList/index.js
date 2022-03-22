@@ -11,12 +11,10 @@ import { Divider } from "@material-ui/core";
 import Stack from "@mui/material/Stack";
 import { selectToken } from "../../store/user/selectors";
 import "./style.css";
-import { textAlign } from "@mui/system";
 
 export default function TripList() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
-  const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const limit = 3;
 
@@ -43,7 +41,10 @@ export default function TripList() {
       <div className="Trips_Block">
         <h2 style={{ textAlign: "center" }}>All Trips </h2>
         {!token ? (
-          <Link to="/signup" style={{ textDecoration: "none", textAlign: "center" }}>
+          <Link
+            to="/signup"
+            style={{ textDecoration: "none", textAlign: "center" }}
+          >
             <h4>Click here to sign in and post a trip😃</h4>
           </Link>
         ) : (
@@ -67,32 +68,34 @@ export default function TripList() {
           spacing={1}
         >
           {allTrips ? (
-            paginateTrips(allTrips, limit, currentPage * limit).map((trip, index) => {
-              return <TripComponent key={index} trip={trip} />;
-            })) : (
+            paginateTrips(allTrips, limit, currentPage * limit).map(
+              (trip, index) => {
+                return <TripComponent key={index} trip={trip} />;
+              }
+            )
+          ) : (
             <p>Shame, still loading.. no trips today!</p>
           )}
           <br></br>
 
-          {!token
-            ? null
-            : (
-              <div className="buttonsPagenation">
-                <Button className="button"
-                  variant="secondary"
-                  onClick={decrementPage}
-                >
-                  Previous page
-                </Button>
-                <Button className="button"
-                  variant="primary"
-                  onClick={incrementPage}
-                >
-                  Next page
-                </Button>
-              </div>
-            )}
-
+          {!token ? null : (
+            <div className="Pagination_Button">
+              <Button
+                className="button"
+                variant="secondary"
+                onClick={decrementPage}
+              >
+                Previous page
+              </Button>
+              <Button
+                className="button"
+                variant="primary"
+                onClick={incrementPage}
+              >
+                Next page
+              </Button>
+            </div>
+          )}
         </Stack>
       </div>
     </div>
