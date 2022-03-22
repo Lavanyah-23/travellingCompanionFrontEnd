@@ -17,6 +17,7 @@ import "./style.css";
 const socket = io.connect("http://localhost:4001");
 
 export default function TripDetails() {
+  const [unclicked, setUnclicked] = useState(true);
   const [showChat, setShowChat] = useState(false);
   const { id } = useParams();
   const user = useSelector(selectUser);
@@ -32,13 +33,14 @@ export default function TripDetails() {
 
   const goOrNotGO = () => {
     dispatch(changeTraveler(id));
+    setUnclicked(!unclicked);
   };
 
   if (!oneTrip) {
     return null;
   }
 
-  const alreadyTraveler = !oneTrip.traveler
+  let alreadyTraveler = !oneTrip.traveler
     ? console.log("no traveler yet")
     : oneTrip.traveler.find((traveler) => {
         return user.id === traveler.id;
@@ -85,22 +87,22 @@ export default function TripDetails() {
             </Link>
           ) : (
             <Button
-              variant="outlined"
-              color="succes"
+              variant="contained"
+              color="primary"
               style={{ margin: 10 }}
               onClick={goOrNotGO}
             >
-              {alreadyTraveler
+              {!alreadyTraveler && !unclicked
                 ? "Click to 'not go' on this trip"
                 : "Click to 'go' on this trip!"}
             </Button>
           )}
-          {!alreadyTraveler ? (
+          {!alreadyTraveler && unclicked ? (
             "Join trip to chat with fellow travelers"
           ) : (
             <Button
               variant="outlined"
-              color="succes"
+              color="primary"
               style={{ margin: 10 }}
               onClick={joinRoom}
             >
