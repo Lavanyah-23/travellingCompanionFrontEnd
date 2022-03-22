@@ -16,6 +16,7 @@
   /* background-color: rgb(107, 107, 180); */
   border-radius: 5%;
   padding: 5%;
+  max-width: 500px;
 }
 .Detail_Block {
   justify-content: center;

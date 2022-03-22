@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "./traveltogether.jpg";
 import "./style.css";
 
-const HomePage = () => {
+export default function HomePage() {
   return (
     <Jumbotron>
       <div className="HomePage">
@@ -11,7 +11,7 @@ const HomePage = () => {
           <div className="HomePageText">
             Find your Travelling Companion and explore the world together!
           </div>
-          <Link to="/trips" text-decoration="none">
+          <Link to="/trips">
             <div
               className="HomePageBackGroundImage"
               style={{
@@ -29,6 +29,4 @@ const HomePage = () => {
       </div>
     </Jumbotron>
   );
-};
-
-export default HomePage;
+}

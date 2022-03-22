@@ -96,8 +96,8 @@ export default function TripDetails() {
               </Button>
             ) : (
               <Button
-                variant="outlined"
-                color="succes"
+                variant="contained"
+                color="primary"
                 style={{ margin: 10 }}
                 onClick={goOrNotGO}
               >
@@ -106,8 +106,13 @@ export default function TripDetails() {
             )
           ) : !alreadyTraveler ? (
             <Button
+<<<<<<< HEAD
               variant="outline"
               color="Danger"
+=======
+              variant="outlined"
+              color="succes"
+>>>>>>> 336ef7d8858740cee8551592fa7bf1e035a30a6d
               style={{ margin: 10 }}
               onClick={goOrNotGO}
             >
@@ -115,8 +120,13 @@ export default function TripDetails() {
             </Button>
           ) : (
             <Button
+<<<<<<< HEAD
               variant="outline"
               color="success"
+=======
+              variant="outlined"
+              color="succes"
+>>>>>>> 336ef7d8858740cee8551592fa7bf1e035a30a6d
               style={{ margin: 10 }}
               onClick={goOrNotGO}
             >
@@ -127,7 +137,11 @@ export default function TripDetails() {
           {!clicked ? (
             !alreadyTraveler ? (
               <Button variant="outlined" color="succes" style={{ margin: 10 }}>
+<<<<<<< HEAD
                 'Go' and chat with fellow travelers
+=======
+                Join trip to chat with fellow travelers
+>>>>>>> 336ef7d8858740cee8551592fa7bf1e035a30a6d
               </Button>
             ) : (
               <Button
@@ -140,8 +154,13 @@ export default function TripDetails() {
               </Button>
             )
           ) : alreadyTraveler ? (
+<<<<<<< HEAD
             <Button variant="outlined" color="succes" style={{ margin: 10 }}>
               'Go' and chat with fellow travelers
+=======
+            <Button variant="contained" color="succes" style={{ margin: 10 }}>
+              Join trip to chat with fellow travelers
+>>>>>>> 336ef7d8858740cee8551592fa7bf1e035a30a6d
             </Button>
           ) : (
             <Button
