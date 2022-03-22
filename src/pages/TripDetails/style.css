@@ -5,13 +5,19 @@
 
 .Trip_Detail_Info {
   display: flex;
+  background-color: rgb(83, 157, 206);
   margin-top: 5%;
   justify-content: center;
   font-size: large;
 }
 .Comments_TripDetails {
-  margin-top: 10%;
-  background-color: rgb(236, 236, 250);
+  margin-top: 2%;
+  margin-left: 5%;
+  /* background-color: rgb(107, 107, 180); */
   border-radius: 5%;
   padding: 5%;
+}
+.Detail_Block {
+  justify-content: center;
+  position: relative;
 }

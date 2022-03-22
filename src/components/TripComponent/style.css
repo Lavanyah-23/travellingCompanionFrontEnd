@@ -1,0 +1,23 @@
+.Trip_ComponentDiv {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 35px;
+  font-family: "Indie Flower", cursive;
+  color: rgb(77, 42, 231);
+  /* height: 300px;
+  width: 300px; */
+  /* left: 1702.4981689453125px;
+  top: 2183.87548828125px; */
+  border-radius: [object Object]px;
+}
+
+.Paper_Div {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 2em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

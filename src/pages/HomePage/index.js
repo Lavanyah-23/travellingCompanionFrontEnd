@@ -17,7 +17,6 @@ const HomePage = () => {
             }}
           >
             {" "}
-            {/* <img src={logo} alt="travel" /> */}
           </div>
           <div className="HomePageText">
             <p> Find your Companion and Explore world together</p>

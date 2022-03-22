@@ -1,4 +1,4 @@
-/* .HomePageContainer {
+.HomePageContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -16,4 +16,4 @@
   left: 65%;
   top: 75%;
   font-size: large;
-} */
+}

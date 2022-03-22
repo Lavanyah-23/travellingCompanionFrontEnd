@@ -1,20 +1,30 @@
 .Trips_List {
-  background-color: rgb(85, 128, 207);
-  margin: 0;
+  left: 1702.4981689453125px;
+  top: 2183.87548828125px;
+  border-radius: [object Object]px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  grid-row-gap: 30px;
+  align-items: flex-end;
+  margin-right: 120px;
 }
 .Title_TripsList {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
   font-size: 35px;
   font-family: "Indie Flower", cursive;
-  color: rgb(77, 42, 231);
+  color: rgb(136, 129, 167);
 }
 
 .Trips_Block {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  flex-direction: "row";
-  justify-content: center;
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+  grid-row-gap: 30px;
+  /* justify-content: center; */
 }
 .Add_Button_TripList {
 }

@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 const UserPage = () => {
   return (

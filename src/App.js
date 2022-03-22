@@ -13,6 +13,7 @@ import AddTrip from "./pages/AddTrip";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function App() {
       <MessageBox />
       {isLoading ? <Loading /> : null}
       <Routes>
-        <Route exact path="/" element={<TripList />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route path="/trips" element={<TripList />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

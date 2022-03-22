@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { postTrip } from "../../store/trips/actions";
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 
 const AddTrip = () => {
   const [startingDate, setStartingDate] = useState(new Date());
@@ -46,10 +47,16 @@ const AddTrip = () => {
   }
 
   return (
-    <div>
+    <div className="AddTrip">
       <Form.Group className="mt-5">
-        <Form.Label>Start Date</Form.Label>
-        <DatePicker onChange={setStartingDate} value={startingDate} />
+        <Form.Label>
+          <strong>Start Date</strong>
+        </Form.Label>
+        <DatePicker
+          autoFocus={false}
+          onChange={setStartingDate}
+          value={startingDate}
+        />
       </Form.Group>
 
       <Form.Group className="mt-5">
