@@ -22,7 +22,7 @@ export default function TripComponent(props) {
     <div
       classname="Trip_ComponentDiv"
       style={{
-        backgroundColor: "green",
+        backgroundColor: "lightgrey",
         padding: "20px 40px",
         borderRadius: 20,
         padding: "20px 20px",
@@ -31,11 +31,11 @@ export default function TripComponent(props) {
       <Paper
         className="Paper_Div"
         style={{
-          backgroundColor: "burlywood",
+          backgroundColor: "verylightgrey",
           padding: "20px 20px",
         }}
       >
-        <h1>{title}</h1>
+        <h1>{title}</h1><br></br>
         <p>Organized by: {organizer.name}</p>
         <p>Country: {country}</p>
         <Link to={`/trips/${id}`}>
