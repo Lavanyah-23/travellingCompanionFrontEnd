@@ -50,6 +50,7 @@ export default function TripList() {
         <Pagination postPerPage={postPerPage} totalPosts={posts.length} />
         <Stack
           direction="row"
+          // flexWrap="wrap"
           divider={<Divider orientation="vertical" flexItem />}
           spacing={1}
         >
