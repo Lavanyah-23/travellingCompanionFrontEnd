@@ -73,20 +73,25 @@ export default function TripList() {
             <p>Shame, still loading.. no trips today!</p>
           )}
           <br></br>
-          <div className="buttonsPagenation">
-            <Button className="button"
-              variant="secondary"
-              onClick={decrementPage}
-            >
-              Previous page
-            </Button>
-            <Button className="button"
-              variant="primary"
-              onClick={incrementPage}
-            >
-              Next page
-            </Button>
-          </div>
+
+          {!token
+            ? null
+            : (
+              <div className="buttonsPagenation">
+                <Button className="button"
+                  variant="secondary"
+                  onClick={decrementPage}
+                >
+                  Previous page
+                </Button>
+                <Button className="button"
+                  variant="primary"
+                  onClick={incrementPage}
+                >
+                  Next page
+                </Button>
+              </div>
+            )}
 
         </Stack>
       </div>

@@ -43,8 +43,8 @@ export default function TripDetails() {
   let alreadyTraveler = !oneTrip.traveler
     ? console.log("no traveler yet")
     : oneTrip.traveler.find((traveler) => {
-        return user.id === traveler.id;
-      });
+      return user.id === traveler.id;
+    });
 
   const joinRoom = () => {
     socket.emit("join_room", id);
@@ -58,8 +58,7 @@ export default function TripDetails() {
       <div className="Trip_Detail_Info" style={{ padding: "40px 40px" }}>
         <Paper key={oneTrip.id} style={{ padding: "20px 20px" }}>
           <div className="Detail_Block">
-            <h3 className="Trip_Detail_Info">{oneTrip.title}</h3>
-
+            <h2 style={{ border: "1px" }}>{oneTrip.title}</h2>
             <p>
               We are going to: <strong>{oneTrip.country}</strong>
             </p>
@@ -96,9 +95,15 @@ export default function TripDetails() {
                 ? "Click to 'not go' on this trip"
                 : "Click to 'go' on this trip!"}
             </Button>
-          )}
+          )}<br></br>
           {!alreadyTraveler && unclicked ? (
-            "Join trip to chat with fellow travelers"
+            <Button
+              variant="outlined"
+              color="primary"
+              style={{ margin: 10 }}
+            >
+              Join trip to chat with fellow travelers
+            </Button>
           ) : (
             <Button
               variant="outlined"
@@ -121,41 +126,41 @@ export default function TripDetails() {
           {!oneTrip.comments
             ? "loading"
             : oneTrip.comments.map((comment) => {
-                return (
-                  <div key={comment.id}>
-                    <Paper style={{ padding: "40px 20px" }}>
-                      <Grid
-                        justifyContent="center"
-                        container
-                        wrap="nowrap"
-                        spacing={2}
-                      >
-                        <Grid item>
-                          <Avatar
-                            alt={comment.name}
-                            src={comment.user.imageAvatar}
-                          />
-                        </Grid>
-                        <Grid item xs zeroMinWidth>
-                          <h4 style={{ margin: 0, textAlign: "left" }}>
-                            {comment.name}
-                          </h4>
-                          <p style={{ textAlign: "left" }}>{comment.comment}</p>
-                          <p style={{ textAlign: "left", color: "gray" }}>
-                            {moment(comment.createdAt).format(
-                              "YYYY-MM-DD hh:mm A"
-                            )}
-                          </p>
-                        </Grid>
-                        <Divider
-                          variant="fullWidth"
-                          style={{ margin: "30px 0" }}
+              return (
+                <div key={comment.id}>
+                  <Paper style={{ padding: "40px 20px" }}>
+                    <Grid
+                      justifyContent="center"
+                      container
+                      wrap="nowrap"
+                      spacing={2}
+                    >
+                      <Grid item>
+                        <Avatar
+                          alt={comment.name}
+                          src={comment.user.imageAvatar}
                         />
                       </Grid>
-                    </Paper>
-                  </div>
-                );
-              })}
+                      <Grid item xs zeroMinWidth>
+                        <h4 style={{ margin: 0, textAlign: "left" }}>
+                          {comment.name}
+                        </h4>
+                        <p style={{ textAlign: "left" }}>{comment.comment}</p>
+                        <p style={{ textAlign: "left", color: "gray" }}>
+                          {moment(comment.createdAt).format(
+                            "YYYY-MM-DD hh:mm A"
+                          )}
+                        </p>
+                      </Grid>
+                      <Divider
+                        variant="fullWidth"
+                        style={{ margin: "30px 0" }}
+                      />
+                    </Grid>
+                  </Paper>
+                </div>
+              );
+            })}
           {user.token ? <PostComment id={oneTrip.id} /> : ""}
         </div>
       </div>
