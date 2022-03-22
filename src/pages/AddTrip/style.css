@@ -1,18 +1,10 @@
 .AddTrip {
   padding: 1%;
-  /* margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px; */
   align-self: center;
   align-items: center;
 
-  background-color: rgb(140, 137, 145);
+  background-color: rgb(230, 230, 230);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* width: 700px;
-  height: 700px; */
-  left: 1702.4981689453125px;
-  top: 2183.87548828125px;
 }

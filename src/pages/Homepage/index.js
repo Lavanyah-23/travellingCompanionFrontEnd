@@ -1,8 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Jumbotron } from "react-bootstrap";
+import logo from "./traveltogether.jpg";
+import "./style.css";
 
-export default function Home() {
-    return (
-        <h1>Welcome to our Travelling Companion</h1>
-    );
-}
+
+const HomePage = () => {
+  return (
+    <Jumbotron>
+      <div className="HomePage">
+        <div className="HomePageContainer">
+          <div className="HomePageText">
+            <p> Find your Travelling Companion and explore the world together!</p>
+          </div>
+          <div
+            className="HomePageBackGroundImage"
+            style={{
+              backgroundImage: `url(${logo})`,
+              width: 1100,
+              height: 630,
+              borderRadius: 10,
+              alignSelf: "center",
+            }}
+          >
+            {" "}
+          </div>
+        </div>
+      </div>
+    </Jumbotron>
+  );
+};
+
+export default HomePage;

@@ -11,28 +11,41 @@ import { Divider } from "@material-ui/core";
 import Stack from "@mui/material/Stack";
 import { selectToken } from "../../store/user/selectors";
 import "./style.css";
+import { textAlign } from "@mui/system";
 
 export default function TripList() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const [posts, setPosts] = useState([]);
-  const [currentPage, setCurentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(0);
+  const limit = 3;
 
   useEffect(() => {
     dispatch(fetchTrips());
   }, [dispatch]);
-  const indexOfLastPost = currentPage * postPerPage;
-  const indexOfTheFirstPost = indexOfLastPost - postPerPage;
-  const currentPosts = posts.slice(indexOfTheFirstPost, indexOfLastPost);
+
   const allTrips = useSelector(selectTrips);
+
+  const paginateTrips = (allTrips, limit, offset) => {
+    return allTrips.slice(offset, limit + offset);
+  };
+
+  function incrementPage() {
+    setCurrentPage(currentPage + 1);
+  }
+
+  function decrementPage() {
+    setCurrentPage(currentPage - 1);
+  }
 
   return (
     <div className="Trips_List">
       <div className="Trips_Block">
         <h2 style={{ textAlign: "center" }}>All Trips </h2>
         {!token ? (
-          "Sign in to post a trip"
+          <Link to="/signup" style={{ textDecoration: "none", textAlign: "center" }}>
+            <h4>Click here to sign in and post a trip😃</h4>
+          </Link>
         ) : (
           <Link to="/addtrip">
             <Button
@@ -47,16 +60,39 @@ export default function TripList() {
             </Button>
           </Link>
         )}
-        <Pagination postPerPage={postPerPage} totalPosts={posts.length} />
+        <Pagination postPerPage={limit} />
         <Stack
           direction="row"
-          // flexWrap="wrap"
-          divider={<Divider orientation="vertical" flexItem />}
+          divider={<Divider orientation="horizontal" flexItem />}
           spacing={1}
         >
-          {allTrips.map((trip, index) => {
-            return <TripComponent key={index} trip={trip} />;
-          })}
+          {allTrips ? (
+            paginateTrips(allTrips, limit, currentPage * limit).map((trip, index) => {
+              return <TripComponent key={index} trip={trip} />;
+            })) : (
+            <p>Shame, still loading.. no trips today!</p>
+          )}
+          <br></br>
+
+          {!token
+            ? null
+            : (
+              <div className="buttonsPagenation">
+                <Button className="button"
+                  variant="secondary"
+                  onClick={decrementPage}
+                >
+                  Previous page
+                </Button>
+                <Button className="button"
+                  variant="primary"
+                  onClick={incrementPage}
+                >
+                  Next page
+                </Button>
+              </div>
+            )}
+
         </Stack>
       </div>
     </div>

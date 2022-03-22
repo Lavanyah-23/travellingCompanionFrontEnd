@@ -58,8 +58,7 @@ export default function TripDetails() {
       <div className="Trip_Detail_Info" style={{ padding: "40px 40px" }}>
         <Paper key={oneTrip.id} style={{ padding: "20px 20px" }}>
           <div className="Detail_Block">
-            <h3 className="Trip_Detail_Info">{oneTrip.title}</h3>
-
+            <h2 style={{ border: "1px" }}>{oneTrip.title}</h2>
             <p>
               We are going to: <strong>{oneTrip.country}</strong>
             </p>

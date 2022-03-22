@@ -5,7 +5,7 @@
 
 .Trip_Detail_Info {
   display: flex;
-  background-color: rgb(83, 157, 206);
+  background-color: lightgrey;
   margin-top: 5%;
   justify-content: center;
   font-size: large;
